@@ -1,0 +1,49 @@
+#extension GL_EXT_frag_depth : enable
+
+precision highp float;
+
+varying vec2 pixelCoord;
+varying vec2 tileCoord;
+
+uniform sampler2D tiles;
+uniform sampler2D sprites;
+
+uniform vec2 tileDataTextureSize;
+uniform vec2 inverseTileSpriteTextureSize;
+uniform float tileSize;
+uniform int fixedDepth;
+uniform int time;
+
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void main(void) {
+    vec4 tile = texture2D(tiles, tileCoord) * 255.0;
+    if(tile.x == 0.0 && tile.y == 0.0 && tile.z == 0.0 && tile.w == 0.0) { discard; }
+
+    vec2 spriteCoord = mod(pixelCoord, tileSize);
+	if(tile.z == 255.0 && tile.w == 255.0) {
+		// Animated doodad
+		const float animationFrames = 3.0;
+		float randPositionOffset = rand(floor(tileCoord * tileDataTextureSize)) * animationFrames;
+        tile.x += floor(mod(float(time) + randPositionOffset, animationFrames)) * 2.0;
+        gl_FragColor = texture2D(sprites, (tileSize * tile.xy + spriteCoord) * inverseTileSpriteTextureSize);
+	} else if(tile.z == 0.0 && tile.w == 0.0) {
+        gl_FragColor = texture2D(sprites, (tileSize * tile.xy + spriteCoord) * inverseTileSpriteTextureSize);
+    } else if(tile.x == 0.0 && tile.y == 0.0) {
+        gl_FragColor = texture2D(sprites, (tileSize * tile.zw + spriteCoord) * inverseTileSpriteTextureSize);
+    } else {
+        vec4 topColor	 = texture2D(sprites, (tileSize * tile.xy + spriteCoord) * inverseTileSpriteTextureSize);
+        vec4 bottomColor = texture2D(sprites, (tileSize * tile.zw + spriteCoord) * inverseTileSpriteTextureSize);
+        gl_FragColor = vec4(topColor.a) * topColor + vec4(1.0 - topColor.a) * bottomColor;
+    }
+    if (gl_FragColor.a == 0.0) {
+        discard;
+    }
+    if (fixedDepth == 0) {
+    	gl_FragDepthEXT = 1.0 - ((tileCoord.y * tileDataTextureSize.y) - 1.0) / (tileDataTextureSize.y);
+    } else {
+    	gl_FragDepthEXT = 1.0 - (floor(tileCoord.y * tileDataTextureSize.y)) / (tileDataTextureSize.y);
+    }
+}

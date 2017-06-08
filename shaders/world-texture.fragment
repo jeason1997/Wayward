@@ -1,0 +1,49 @@
+precision highp float;
+
+varying vec2 textureCoord;
+varying vec2 pixelCoord;
+varying vec2 visionCoord;
+
+uniform sampler2D data;
+uniform sampler2D fog;
+uniform sampler2D vision;
+uniform sampler2D visionOld;
+uniform sampler2D bayerMatrix; //8x8
+
+uniform vec2 transitionOffset;
+uniform float transition;
+uniform float blackness;
+uniform float lightAmbient;
+uniform vec3 colorAmbient;
+uniform float ditherEnabled;
+
+float find_closest(vec2 xy, float c0)
+{
+	if(c0 <= 0.0) return 1.0;
+	if(c0 >= 1.0) return 0.0;
+
+	float limit = texture2D(bayerMatrix, xy).a * 4.0;
+	if(c0 <= limit)
+		return 1.0;
+	return 0.0;
+}
+
+void main(void) {
+	float fog = texture2D(fog, textureCoord).a;
+    vec4 light = mix(texture2D(visionOld, visionCoord + transitionOffset), texture2D(vision, visionCoord), transition);
+	float vis = min(light.a * 3.0, 1.0);
+	if (ditherEnabled > 0.0) {
+		vec2 pixelOffset = mod(pixelCoord, 8.0) / 8.0;
+		vis = 1.0 - find_closest(pixelOffset, vis) * 0.7;
+		fog = 1.0 - find_closest(pixelOffset, min(fog * 1.5, 1.0));
+	} else {
+		vis = 1.0 - (1.0 - vis) * 0.7;
+	}
+	vec3 worldColor = texture2D(data, textureCoord).rgb;
+	vec3 RGB = blackness * vis * fog * worldColor * (max(colorAmbient, light.rgb * 3.0) + light.rgb);
+	// vec3 S1 = sqrt(RGB);
+	// vec3 S2 = sqrt(S1);
+	// vec3 S3 = sqrt(S2);
+	// vec3 sRGB = 0.585122381 * S1 + 0.783140355 * S2 - 0.368262736 * S3;
+    gl_FragColor = vec4(RGB, 1.0);
+}

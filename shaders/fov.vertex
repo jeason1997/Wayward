@@ -1,0 +1,14 @@
+precision highp float;
+
+attribute vec2 position;
+attribute vec2 texture;
+
+uniform float viewRadius;
+
+varying vec2 tileCoord;
+
+void main(void) {
+    tileCoord = texture * (viewRadius * 2.0 + 1.0);
+    gl_Position = vec4(position, 0.0, 1.0);
+    gl_Position.y = -gl_Position.y;
+}

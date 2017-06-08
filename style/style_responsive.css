@@ -1,0 +1,136 @@
+@media screen and (max-width: 1500px) {
+    #screen-in-game #buttons {
+        text-align: left;
+        margin-right: 0;
+        margin-left: 8px;
+    }
+
+    #screen-in-game #stats {
+        top: 64px;
+    }
+
+    .messages p {
+        -webkit-line-clamp: 4;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #screen-in-game #quick-slots {
+        width: 150px;
+    }
+
+    .messages p {
+        max-width: 100%;
+        -webkit-line-clamp: 5;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #help {
+        width: 520px;
+    }
+
+    .messages p {
+        -webkit-line-clamp: 6;
+    }
+}
+
+@media screen and (max-height: 930px) {
+    #screen-title #main-menu {
+        top: 210px;
+    }
+
+    #screen-title .logo {
+        width: 344px;
+        top: 30px;
+    }
+
+    #help {
+        width: 520px;
+    }
+
+    #help .content {
+        max-height: 400px;
+    }
+}
+
+@media screen and (max-height: 790px) {
+    #screen-title #main-menu .mod-container {
+        height: 300px;
+    }
+
+    #screen-title #main-menu .highscore-container {
+        height: 360px;
+    }
+
+    #screen-title #main-menu .row, #screen-title #main-menu .row-text, #screen-title #main-menu .separator {
+        height: 38px;
+    }
+
+    #screen-title #main-menu .row .text, #screen-title #main-menu .row-text .text {
+        padding-top: 8px;
+        padding-left: 13px;
+    }
+
+    #screen-title #main-menu .separator {
+        height: 18px;
+    }
+
+    #screen-title #main-menu .row .right .icon {
+        margin-top: 9px;
+    }
+
+    #screen-title #main-menu .row.facebook .right .icon {
+        margin-top: 7px;
+    }
+
+    #screen-title #main-menu .row.twitter .right .icon {
+        margin-top: 6px;
+    }
+    
+    #screen-title #main-menu .row.highscore {
+        height: 60px;
+    }
+    
+    #screen-title #main-menu .mod-container .row .text {
+        padding-top: 0;
+    }
+    
+    #screen-title #main-menu .mod-container .row .checkbox {
+        margin: 8px;
+    }
+    
+    #screen-title #main-menu .mod-container .row .right .icon {
+        margin-top: 10px;
+    }
+    
+    #screen-title #main-menu .row.saved-game input {
+        padding: 1px 13px;
+        margin-top: -7px;
+        margin-left: -12px;
+    }
+}
+
+@media screen and (max-height: 700px) {
+    #screen-in-game #options .content {
+        height: 375px;
+    }
+
+    #screen-in-game #options {
+        height: 400px;
+    }
+}
+
+@media screen and (max-height: 730px) {
+    #screen-title #main-menu .mod-container {
+        height: 200px;
+    }
+
+    #screen-title #main-menu .highscore-container {
+        height: 260px;
+    }
+
+    #options, #about {
+        height: 260px;
+    }
+}

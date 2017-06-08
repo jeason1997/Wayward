@@ -1,0 +1,102 @@
+precision highp float;
+
+varying vec2 tileCoord;
+
+uniform sampler2D lightLevel;
+uniform sampler2D lightBlock;
+uniform vec2 inverseLightBlockSize;
+uniform float inverseDetailLevel;
+uniform float lightAmbient;
+uniform float viewRadius;
+uniform vec2 playerPos;
+uniform bool lightBlocking;
+
+float bound(float s, float ds) {
+    if(ds < 0.0) {
+        s = mod(-s, 1.0);
+        return (1.0 - s) / -ds;
+    } else {
+        s = mod(s, 1.0);
+        return (1.0 - s) / ds;
+    }
+}
+
+bool traverse(vec2 p0, vec2 p1) {
+    vec2 center = vec2(viewRadius, viewRadius);
+    int x = int(p0.x);
+    int y = int(p0.y);
+    int ex = int(p1.x);
+    int ey = int(p1.y);
+    int sx = p0.x < p1.x ? 1 : -1;
+    int sy = p0.y < p1.y ? 1 : -1;
+    int blockX = ex;
+    int blockY = ey;
+    vec2 delta = p1 - p0;
+    vec2 tMax = vec2(bound(p0.x, delta.x), bound(p0.y, delta.y));
+    vec2 tDelta = vec2(sx, sy) / delta;
+    for(int i = 0; i < 40; ++i) {
+        if(x == ex && y == ey) {
+            return true;
+        }
+        if(tMax.x < tMax.y) {
+            tMax.x += tDelta.x;
+            x += sx;
+        } else {
+            tMax.y += tDelta.y;
+            y += sy;
+        }
+        float lightBlockValue = texture2D(lightBlock, (playerPos + vec2(x, y) - center) * inverseLightBlockSize).a;
+		if ((blockX != ex || blockY != ey) && 
+			(blockX != x || blockY != y) &&
+			(lightBlockValue > 0.5 || lightBlockValue == 0.0))
+        {
+            return false;
+        }
+        if(lightBlockValue > 0.0) {
+            blockX = x;
+            blockY = y;
+        }
+    }
+    return true;
+}
+
+const vec3 lightColor = vec3(0.8, 0.7, 0.0);
+
+void main(void) {
+    vec2 center = vec2(viewRadius, viewRadius);
+    float lightLevel = texture2D(lightLevel, (playerPos + tileCoord - center) * inverseLightBlockSize).a;
+	float vision = max(lightLevel * 3.0, lightAmbient);
+	vision = max(vision, 1.25 - distance(tileCoord, center + vec2(0.5, 0.5)));
+	float visionRadius = viewRadius * vision;
+
+    float dist = distance(tileCoord, center + vec2(0.5, 0.5));
+	float d = dist / visionRadius;
+	float visibility = max(1.0 - d * d, 0.0);
+	if(dist < visionRadius) {
+		float visibleCount = 0.0;
+		if(lightBlocking) {
+            if(traverse(center + vec2(0.125, 0.125), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.125, 0.375), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.125, 0.625), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.125, 0.875), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.375, 0.125), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.375, 0.375), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.375, 0.625), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.375, 0.875), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.625, 0.125), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.625, 0.375), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.625, 0.625), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.625, 0.875), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.875, 0.125), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.875, 0.375), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.875, 0.625), tileCoord)) visibleCount += 1.0;
+            if(traverse(center + vec2(0.875, 0.875), tileCoord)) visibleCount += 1.0;
+            visibility *= visibleCount / 16.0;
+		}
+	}
+
+	vision *= visibility;
+    vision = min(max(vision, 0.0), 1.0);
+    vec3 lightFinal = lightColor * lightLevel * visibility * (1.0 - lightAmbient);
+    gl_FragColor = vec4(lightFinal, vision);
+}

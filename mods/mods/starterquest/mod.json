@@ -1,0 +1,11 @@
+{
+	"name": "中文本地化翻译模组",
+	"description": "中国玩家任意岛游戏讨论QQ群：420068682. SmallMain的博客：http://the-pi.top/ .Chinese friends, enjoy it!",
+	"version": "1.1.0",
+	"author": "SmallMain, 莓",
+	"files": [
+		"chinese.js"
+	],
+	"unloadable": true,
+	"publishedFileId": "754935341"
+}

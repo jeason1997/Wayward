@@ -1,0 +1,22 @@
+precision highp float;
+
+varying vec2 textureCoord;
+
+uniform float blurSize;
+uniform sampler2D data;
+
+void main(void) {
+    vec4 sum = vec4(0.0);
+
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y - 4.0*blurSize)) * 0.05;
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y - 3.0*blurSize)) * 0.09;
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y - 2.0*blurSize)) * 0.12;
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y - 1.0*blurSize)) * 0.15;
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y - 0.0*blurSize)) * 0.16;
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y + 1.0*blurSize)) * 0.15;
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y + 2.0*blurSize)) * 0.12;
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y + 3.0*blurSize)) * 0.09;
+    sum += texture2D(data, vec2(textureCoord.x, textureCoord.y + 4.0*blurSize)) * 0.05;
+
+    gl_FragColor = sum;
+}

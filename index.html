@@ -1,0 +1,658 @@
+<!--
+    Copyright Unlok, Vaughn Royko 2011-2016
+    http://www.unlok.ca
+
+    Credits & Thanks:
+    http://www.unlok.ca/wiki/wayward/credits-thanks/
+
+    Wayward is a copyrighted and licensed work. Please read the license before attempting to modify:
+    http://www.unlok.ca/wayward-license/
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Wayward</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="minimal-ui" />
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="stylesheet" type="text/css" href="style/style_responsive.css" />
+    <script type="text/javascript">
+        if (typeof (require) !== "undefined") {
+            window.$ = window.jQuery = require("./js/vendor/jquery.min.js");
+        }
+    </script>
+    <meta name="description" content="Wayward is a turn-based, top-down, wilderness survival roguelike created with HTML5." />
+    <meta charset="utf-8" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon-precomposed" href="path/to/favicon-152.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/path/to/favicon-144.png">
+</head>
+
+<body>
+    <div id="overlay-refresh-1"></div>
+    <div id="overlay-refresh-2"></div>
+
+    <div id="screen-loading" class="fade fade-in">
+        <div class="message"></div>
+        <div class="loading normal">
+            <span class="block-1"></span>
+            <span class="block-2"></span>
+            <span class="block-3"></span>
+            <span class="block-4"></span>
+            <span class="block-5"></span>
+            <span class="block-6"></span>
+            <span class="block-7"></span>
+            <span class="block-8"></span>
+            <span class="block-9"></span>
+        </div>
+        <div class="loading rest">
+            <span class="block-1">Z</span>
+            <span class="block-2">Z</span>
+            <span class="block-3">Z</span>
+        </div>
+    </div>
+
+    <div id="screen-cover" class="fade fade-in">
+        <img class="logo" src="images/ui/unlok.png" />
+    </div>
+
+    <div id="screen-title" class="hide">
+        <img class="logo" src="images/ui/logo.png" />
+        <div id="main-menu">
+            <div data-mainmenu-id="Default" class="slide-in">
+                <div class="row clickable" data-mainmenu-switch-id="PlayGame">
+                    <div class="text"></div>
+                </div>
+                <div class="row clickable" data-mainmenu-action-id="DailyChallenge">
+                    <div class="text"></div>
+                </div>
+                <div class="separator"></div>
+                <div class="row clickable" data-mainmenu-switch-id="Options">
+                    <div class="text"></div>
+                </div>
+                <div class="row clickable" data-mainmenu-switch-id="ManageMods">
+                    <div class="text"></div>
+                </div>
+                <div class="separator"></div>
+                <div class="row clickable" data-mainmenu-switch-id="ViewHighscores">
+                    <div class="text"></div>
+                </div>
+                <div class="row clickable" data-mainmenu-switch-id="About">
+                    <div class="text"></div>
+                </div>
+                <div class="separator"></div>
+                <div class="row clickable" data-mainmenu-action-id="QuitGame">
+                    <div class="text"></div>
+                </div>
+            </div>
+            <div data-mainmenu-id="PlayGame" class="slide-out">
+                <div class="header">
+                    <div class="back clickable" data-mainmenu-switch-id="Default">
+                        <img src="images/ui/title/back_arrow.png" />
+                    </div>
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+                <div class="container">
+                    <div class="row template-saved-game">
+                        <div class="left clickable" data-mainmenu-action-id="ContinueGame">
+                            <div class="text"><input type="text" class="silent" value="" disabled="disabled" /></div>
+                        </div>
+                        <div class="right">
+                            <div class="icon clickable" data-mainmenu-action-id="EditGame">
+                                <img src="images/ui/title/edit_game.png" />
+                            </div>
+                            <div class="icon clickable" data-mainmenu-action-id="ExportGame">
+                                <img src="images/ui/title/export_game.png" />
+                            </div>
+                            <div class="icon clickable" data-mainmenu-action-id="DeleteGame">
+                                <img src="images/ui/title/trash.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="row new-game">
+                        <div class="left clickable" data-mainmenu-action-id="NewGame">
+                            <div class="text"></div>
+                        </div>
+                        <div class="right">
+                            <label for="import-game" class="icon clickable" data-mainmenu-action-id="ImportGame">
+                                <img src="images/ui/title/import_game.png" />
+                            </label>
+                            <input id="import-game" type="file" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-mainmenu-id="Options" class="slide-out">
+                <div class="header">
+                    <div class="back clickable" data-mainmenu-switch-id="Default">
+                        <img src="images/ui/title/back_arrow.png" />
+                    </div>
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+                <div class="container"></div>
+            </div>
+            <div data-mainmenu-id="ManageMods" class="slide-out">
+                <div class="header">
+                    <div class="back clickable" data-mainmenu-switch-id="Default">
+                        <img src="images/ui/title/back_arrow.png" />
+                    </div>
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+                <div class="container">
+                    <div class="row clickable" data-mainmenu-action-id="VisitSteamWorkshop">
+                        <div class="text"></div>
+                    </div>
+                    <div class="row clickable" data-mainmenu-action-id="ModdingGuide">
+                        <div class="text"></div>
+                    </div>
+                    <div class="mod-container">
+                        <div class="row-text" data-mod-type="Local">
+                            <div class="text"></div>
+                        </div>
+                        <div data-mod-type="Local"></div>
+                        <div class="row-text" data-mod-type="Workshop">
+                            <div class="text"></div>
+                        </div>
+                        <div data-mod-type="Workshop"></div>
+                        <div class="row-text" data-mod-type="Internal">
+                            <div class="text"></div>
+                        </div>
+                        <div data-mod-type="Internal"></div>
+                        <div class="row no-mods clickable" data-mainmenu-action-id="VisitSteamWorkshop2">
+                            <div class="text"></div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="row clickable" data-mainmenu-action-id="OpenModsFolder">
+                            <div class="text"></div>
+                        </div>
+                        <div class="row template-mod">
+                            <div class="left">
+                                <div class="checkbox clickable" data-mainmenu-action-id="EnableMod">
+                                    <div class="filledin"></div>
+                                </div>
+                                <div class="text"></div>
+                            </div>
+                            <div class="right">
+                                <div class="icon" data-mainmenu-action-id="ViewInSteamWorkshop">
+                                    <img src="images/ui/title/view_in_steam_workshop.png" />
+                                </div>
+                                <div class="icon" data-mainmenu-action-id="PublishMod">
+                                    <img src="images/ui/title/publish.png" />
+                                </div>
+                                <div class="icon" data-mainmenu-action-id="UninstallMod">
+                                    <img src="images/ui/title/trash.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-mainmenu-id="ViewHighscores" class="slide-out">
+                <div class="header">
+                    <div class="back clickable" data-mainmenu-switch-id="Default">
+                        <img src="images/ui/title/back_arrow.png" />
+                    </div>
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+                <div class="container highscore-container">
+                    <div class="row no-highscores">
+                        <div class="text"></div>
+                    </div>
+                    <div class="row template-highscore">
+                        <div class="text title"></div>
+                        <div class="text score"></div>
+                        <div class="text message"></div>
+                    </div>
+                </div>
+            </div>
+            <div data-mainmenu-id="About" class="slide-out">
+                <div class="header">
+                    <div class="back clickable" data-mainmenu-switch-id="Default">
+                        <img src="images/ui/title/back_arrow.png" />
+                    </div>
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+                <div class="container">
+                    <div id="about" class="container">
+                        <div class="content">
+                            <h3 class="intro"></h3>
+                            <ul class="credits"></ul>
+                            <h3 class="thanks-intro"></h3>
+                            <ul class="thanks"></ul>
+                            <h3 class="donators"></h3>
+                            <h3 class="libraries-intro"></h3>
+                            <ul class="libraries"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-mainmenu-id="EndGame" class="slide-out">
+                <div class="header">
+                    <div class="back clickable" data-mainmenu-switch-id="Default">
+                        <img src="images/ui/title/back_arrow.png" />
+                    </div>
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+                <div class="container">
+                    <div class="separator"></div>
+                    <div class="row highscore">
+                        <div class="text title"></div>
+                        <div class="text score"></div>
+                        <div class="text message"></div>
+                    </div>
+                    <div class="separator"></div>
+                    <div class="row clickable facebook" data-mainmenu-action-id="ShareOnFacebook">
+                        <div class="left">
+                            <div class="text"></div>
+                        </div>
+                        <div class="right">
+                            <div class="icon">
+                                <img src="images/ui/title/facebook.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clickable twitter" data-mainmenu-action-id="PostATweet">
+                        <div class="left">
+                            <div class="text"></div>
+                        </div>
+                        <div class="right">
+                            <div class="icon">
+                                <img src="images/ui/title/twitter.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-in-game" class="fade hidden">
+        <div id="blocker" class="overlay"></div>
+        <div id="blocker-mouse" class="overlay"></div>
+
+        <div id="stats">
+            <div class="left">
+                <div class="container" data-bar="Health">
+                    <div class="icon">
+                        <img src="images/ui/in-game/health.png" />
+                    </div>
+                    <div class="bar"></div>
+                </div>
+                <div class="container" data-bar="Stamina">
+                    <div class="icon">
+                        <img src="images/ui/in-game/stamina.png" />
+                    </div>
+                    <div class="bar"></div>
+                </div>
+                <div class="container" data-bar="Thirst">
+                    <div class="icon">
+                        <img src="images/ui/in-game/thirst.png" />
+                    </div>
+                    <div class="bar"></div>
+                </div>
+                <div class="container" data-bar="Hunger">
+                    <div class="icon">
+                        <img src="images/ui/in-game/hunger.png" />
+                    </div>
+                    <div class="bar"></div>
+                </div>
+                <div class="status-effects">
+                    <span class="icon burn">
+                        <img src="images/ui/in-game/burn.gif" />
+                    </span>
+                    <span class="icon bleed">
+                        <img src="images/ui/in-game/bleed.gif" />
+                    </span>
+                    <span class="icon poison">
+                        <img src="images/ui/in-game/poison.gif" />
+                    </span>
+                </div>
+            </div>
+            <div class="right">
+                <div class="container" data-attribute="Malignity">
+                    <div class="icon">
+                        <img src="images/ui/in-game/malignity.png" />
+                    </div>
+                    <div class="attribute"></div>
+                </div>
+                <div class="container" data-attribute="Weight">
+                    <div class="icon">
+                        <img src="images/ui/in-game/weight.png" />
+                    </div>
+                    <div class="attribute"></div>
+                </div>
+                <div class="container" data-attribute="Attack">
+                    <div class="icon">
+                        <img src="images/ui/in-game/attack.png" />
+                    </div>
+                    <div class="attribute"></div>
+                </div>
+                <div class="container" data-attribute="Defense">
+                    <div class="icon">
+                        <img src="images/ui/in-game/defense.png" />
+                    </div>
+                    <div class="attribute"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="buttons">
+            <ul class="icon">
+                <li class="spacing-right">
+                    <img class="clickable" data-button="TitleScreen" src="images/ui/in-game/main_menu.png">
+                </li>
+                <li>
+                    <img class="clickable" data-button="Save" src="images/ui/in-game/save.png" />
+                </li>
+                <li>
+                    <img class="clickable" data-button="Help" src="images/ui/in-game/help.png" />
+                </li>
+                <li>
+                    <img class="clickable" data-button="Milestones" src="images/ui/in-game/milestones.png" />
+                </li>
+                <li>
+                    <img class="clickable" data-button="Messages" src="images/ui/in-game/messages.png" />
+                </li>
+                <li>
+                    <img class="clickable" data-button="Options" src="images/ui/in-game/options.png" />
+                </li>
+                <li class="separator"></li>
+                <li>
+                    <img class="clickable" data-button="Actions" src="images/ui/in-game/actions.png" />
+                </li>
+                <li>
+                    <img class="clickable" data-button="Inventory" src="images/ui/in-game/inventory.png" />
+                </li>
+                <li>
+                    <img class="clickable" data-button="Crafting" src="images/ui/in-game/crafting.png" />
+                </li>
+                <li>
+                    <img class="clickable" data-button="Equipment" src="images/ui/in-game/equipment.png" />
+                </li>
+                <li>
+                    <img class="clickable" data-button="Skills" src="images/ui/in-game/skills.png" />
+                </li>
+            </ul>
+        </div>
+
+        <div id="dialogs">
+            <div id="inventory" title="">
+                <ul id="container-inventory" class="container sortable" data-sortable="inventory"></ul>
+                <input class="filter" placeholder="" type="search" />
+            </div>
+            <div id="container" title="">
+                <ul class="container sortable" data-sortable="container"></ul>
+                <input class="filter" placeholder="" type="search" />
+            </div>
+            <div id="equipment" title="">
+                <div id="container-equipment" class="container">
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="LeftHand"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="RightHand"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="Head"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="Neck"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="Chest"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="Hands"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="Belt"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="Legs"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="Feet"></ul>
+                    <ul class="sortable" data-sortable="equip-slot" data-equip-slot="Back"></ul>
+                </div>
+            </div>
+            <div id="crafting" title="">
+                <ul id="container-crafting" class="container"></ul>
+                <input class="filter" placeholder="" type="search" />
+            </div>
+            <div id="skills" title="">
+                <div id="container-skills" class="container"></div>
+            </div>
+            <div id="milestones" title="">
+                <div id="container-milestones" class="container"></div>
+            </div>
+            <div id="messages" title="">
+                <div id="container-messages" class="messages container"></div>
+            </div>
+            <div id="map" title="">
+                <canvas id="game-map" width="456" height="456"></canvas>
+            </div>
+        </div>
+
+        <canvas id="game"></canvas>
+
+        <div id="quick-slots">
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="1">
+                <div class="number"></div>
+            </ul>
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="2">
+                <div class="number"></div>
+            </ul>
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="3">
+                <div class="number"></div>
+            </ul>
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="4">
+                <div class="number"></div>
+            </ul>
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="5">
+                <div class="number"></div>
+            </ul>
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="6">
+                <div class="number"></div>
+            </ul>
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="7">
+                <div class="number"></div>
+            </ul>
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="8">
+                <div class="number"></div>
+            </ul>
+            <ul class="quick-slot" data-sortable="quick-slot" data-quick-slot="9">
+                <div class="number"></div>
+            </ul>
+        </div>
+
+        <div id="messages-overlay" class="messages"></div>
+
+        <div id="actions"></div>
+
+        <div class="overlay fade hidden">
+            <div id="options" class="container">
+                <div class="header">
+                    <div class="label"></div>
+                    <div class="close clickable"></div>
+                </div>
+                <div class="clear-fix"></div>
+                <div class="content">
+                    <div class="left">
+                        <p class="section audio"></p>
+                        <div class="audio-section audio-section-mute">
+                            <label class="mute"></label>
+                            <div class="checkbox clickable" data-checkbox-id="Mute">
+                                <div class="filledin"></div>
+                            </div>
+                        </div>
+                        <div class="audio-section">
+                            <label class="effects"></label>
+                            <input class="clickable" type="range" min="0" max="100" value="40" step="1" data-range-id="Effects" />
+                        </div>
+                        <div class="audio-section">
+                            <label class="music"></label>
+                            <input class="clickable" type="range" min="0" max="100" value="20" step="1" data-range-id="Music" />
+                        </div>
+                        <div class="audio-section audio-section-next-song">
+                            <label class="next-song"></label>
+                            <div class="next-song-button clickable" data-button-id="NextSong"></div>
+                        </div>
+
+                        <div class="clear-fix"></div>
+                        <p class="section graphics"></p>
+
+                        <div class="button-choice" data-button-choice-id="FontStyle">
+                            <button type="button" class="pixel-font clickable"></button> / <button type="button" class="alternate-font"></button>
+                        </div>
+                        <div class="button-choice" data-button-choice-id="DisplayMode">
+                            <button type="button" class="windowed-mode clickable"></button> / <button type="button" class="fullscreen-mode"></button>
+                        </div>
+                        <div class="button-choice" data-button-choice-id="VisionMode">
+                            <button type="button" class="vision-dither clickable"></button> / <button type="button" class="vision-fade"></button>
+                        </div>
+                        <div class="button-choice scale-section">
+                            <button type="button" class="scale-in clickable" data-button-id="ScaleIn"></button> / <button type="button" class="scale-out clickable" data-button-id="ScaleOut"></button> <button type="button" class="scale-default clickable" data-button-id="ScaleDefault"></button>
+                        </div>
+                        <div class="visible-in-game">
+                            <button type="button" class="zoom-in clickable" data-button-id="ZoomIn"></button> / <button type="button" class="zoom-out clickable" data-button-id="ZoomOut"></button>
+                        </div>
+
+                        <div class="options-row">
+                            <span class="dialog-opacity"></span><input class="clickable" type="range" min="0" max="100" value="40" step="1" data-range-id="DialogOpacity" />
+                        </div>
+                    </div>
+                    <div class="right">
+                        <p class="section game"></p>
+                        <div class="options-row">
+                            <div class="checkbox-option clickable" data-checkbox-id="AutoGather">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                            <div class="checkbox-option clickable" data-checkbox-id="AutoPickup">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                        </div>
+                        <div class="options-row">
+                            <div class="checkbox-option clickable" data-checkbox-id="DropOnGather">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                            <div class="checkbox-option clickable" data-checkbox-id="EnableHints">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                        </div>
+                        <div class="options-row">
+                            <div class="checkbox-option clickable" data-checkbox-id="MouseClickMovement">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                            <div class="checkbox-option clickable" data-checkbox-id="KeepSortActive">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                        </div>
+                        <div class="options-row">
+                            <div class="checkbox-option clickable" data-checkbox-id="SkipIntro">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                            <div class="checkbox-option clickable" data-checkbox-id="ZoomOnScroll">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                        </div>
+                        <div class="options-row">
+                            <div class="checkbox-option clickable" data-checkbox-id="WorldTooltips">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                            <div class="checkbox-option clickable" data-checkbox-id="AlternateContextMenu">
+                                <div class="checkbox">
+                                    <div class="filledin"></div>
+                                </div>
+                                <span class="label"></span>
+                            </div>
+                        </div>
+
+                        <div class="clear-fix"></div>
+                        <p class="section language"></p>
+                        <select class="language-select clickable"></select>
+                    </div>
+                    <div class="clear-fix"></div>
+                    <p class="section binds"></p>
+                    <ul class="bind-list"></ul>
+                    <div class="bind-default clickable"></div>
+
+                    <p class="section save-data"></p>
+                    <button type="button" class="warning clickable" data-button-id="ClearSaveData"></button>
+
+                    <p class="section developer"></p>
+                    <button type="button" class="clickable" data-button-id="OpenLogsFolder"></button>
+                    <button type="button" class="clickable" data-button-id="ToggleDeveloperTools"></button>
+                    <button type="button" class="warning clickable" data-button-id="ReloadGame"></button>
+                </div>
+            </div>
+
+            <div id="help" class="container">
+                <div class="header">
+                    <div class="label"></div>
+                    <div class="close clickable"></div>
+                </div>
+                <div class="clear-fix"></div>
+                <div class="title"></div>
+                <div class="content"></div>
+                <div class="button-row">
+                    <button type="button" class="clickable" data-button-id="EnableHints"></button>
+                    <button type="button" class="clickable" data-button-id="PreviousHint"></button>
+                    <button type="button" class="clickable" data-button-id="NextHint"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay fade hidden">
+        <div id="confirm" class="container">
+            <div class="message"></div>
+            <div class="button-row"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var gameVersionMajor = 2;
+        var gameVersionMinor = 1;
+        var gameVersionPatch = 2;
+        var gameVersion = gameVersionMajor + "." + gameVersionMinor + "." + gameVersionPatch;
+    </script>
+
+    <div id="version">
+        <span class="info"></span>
+        <span class="extra"></span>
+    </div>
+
+    <script src="js/vendor/jquery.min.js" type="text/javascript"></script>
+    <script src="js/vendor/jquery-ui.js" type="text/javascript"></script>
+    <script src="js/vendor/jquery.ui.touch-punch.js" type="text/javascript"></script>
+    <script src="js/vendor/jquery.ui-contextmenu.js" type="text/javascript"></script>
+    <script src="js/vendor/tsm-0.7.js" type="text/javascript"></script>
+    <script src="js/vendor/lz-string.js" type="text/javascript"></script>
+    <script src="js/vendor/pluralize.js" type="text/javascript"></script>
+
+    <!-- inject:js -->
+    <script src="js/wayward.min.js"></script>
+    <!-- endinject -->
+
+</body>
+
+</html>

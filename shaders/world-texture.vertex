@@ -1,0 +1,22 @@
+precision highp float;
+
+attribute vec2 position;
+attribute vec2 texture;
+
+varying vec2 textureCoord;
+varying vec2 pixelCoord;
+varying vec2 visionCoord;
+
+uniform vec2 viewportSize;
+uniform vec2 viewOffset;
+uniform vec2 inverseVisionTextureSize;
+uniform vec2 visionOffset;
+uniform float inverseTileSize;
+uniform float tileSize;
+
+void main(void) {
+    pixelCoord = (vec2(position.x, -position.y) * 0.5) * viewportSize + viewOffset + tileSize;
+    visionCoord = (pixelCoord * inverseTileSize + visionOffset) * inverseVisionTextureSize;
+    textureCoord = texture;
+    gl_Position = vec4(position, 0.0, 1.0);
+}

@@ -1,0 +1,21 @@
+precision highp float;
+
+uniform vec2 viewOffset;
+uniform vec2 inverseViewportSize;
+uniform float tileSize;
+uniform float zoom;
+
+attribute vec2 a_position;
+attribute float a_pointSize;
+attribute vec4 a_color;
+
+varying vec4 v_color;
+
+void main(void)
+{
+    gl_PointSize = a_pointSize * zoom;
+
+    v_color = a_color;
+    gl_Position = vec4((ceil((a_position - viewOffset) * tileSize) * inverseViewportSize).xy, 0, 1);
+    gl_Position.y *= -1.0;
+}

@@ -1,0 +1,19 @@
+Below is a license written by people with little experience in law. We don't want to have to write an EULA that has so many pages that it would require days to read. We only want to lay down some very simple rules to make sure development stays focused under one general direction. In plain terms, please don't be a jerk, and we'll continue to make Wayward the best experience it can be.
+
+Wayward is copyrighted under Unlok, by Vaughn Royko 2011-2016. Any files (sound, graphic, HTML, CSS, and JavaScript) in which Wayward uses with or without this license marking is also subject to this copyright and license unless otherwise stated.
+
+What You Can't Do!
+At this time, distribution of the source code, and/or assets is forbidden. This also includes modified versions of anything under this Wayward licensing agreement. Commercial use of any source code and/or assets is strictly prohibited. To ensure the quality and integrity of our game, we need to ensure distribution under our terms and advisement.
+
+What You Can Do!
+You are free to contribute to the project in any way you see fit such as suggestions, comments, and bug reports. We love them! You are free to make your own modifications and extensions that overwrite any Wayward functionality and code. In fact, we encourage it - modification support will get better and better! You are also free to distribute anything you create and/or write from scratch for Wayward as long as you don't distribute any original or modified Wayward files directly. Please feel free to distribute via Steam Workshop.
+
+Any suggestions or ideas made are assumed to be offered for free unless otherwise agreed before the suggestion was made.
+
+Why?
+At this time, the source code and assets of Wayward are technical available - this is open technology after all. We offer Wayward as a free form of entertainment and we would hope that you would respect our license terms set here. We have observed other community or open projects that have splintered and fractured beyond a semblance of a common goal and design philosophy. After a lot of thought, we don't want this for Wayward, which is why we pushed for a commercial release on Steam.
+
+We reserve the right to change this license agreement at any time with or without notice, with immediate and/or retroactive effect.
+
+You can read an updated copy of this license at any time here:
+http://www.unlok.ca/wayward-license/

@@ -1,0 +1,23 @@
+precision highp float;
+
+varying vec2 tileCoord;
+
+uniform sampler2D fog;
+uniform vec2 inverseTileDataTextureSize;
+
+void main(void) {
+	float sum = 0.0;
+	float blurSize = inverseTileDataTextureSize.y / 4.0;
+
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y - 4.0*blurSize)).a * 0.05;
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y - 3.0*blurSize)).a * 0.09;
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y - 2.0*blurSize)).a * 0.12;
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y - 1.0*blurSize)).a * 0.15;
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y - 0.0*blurSize)).a * 0.16;
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y + 1.0*blurSize)).a * 0.15;
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y + 2.0*blurSize)).a * 0.12;
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y + 3.0*blurSize)).a * 0.09;
+    sum += texture2D(fog, vec2(tileCoord.x, tileCoord.y + 4.0*blurSize)).a * 0.05;
+
+	gl_FragColor = vec4(0, 0, 0, sum);
+}
