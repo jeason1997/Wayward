@@ -1,11 +1,11 @@
 @font-face {
     font-family: "pressstart";
-    src: url(pressstart2p-webfontd41d.eot?#iefix) format("embedded-opentype"), url(pressstart2p-webfont.ttf) format("truetype"), url(pressstart2p-webfont.svg#pressstart) format("svg");
+    src: url(pressstart2p-webfont.eot?#iefix) format("embedded-opentype"), url(pressstart2p-webfont.ttf) format("truetype"), url(pressstart2p-webfont.svg#pressstart) format("svg");
     font-weight: 400;
-    font-style: normal;
+    font-style:  normal;
 }
 
-a, button, body, div, dl, dt, em, h1, h2, h3, h4, h5, h6, html, img, label, li, ol, p, span, strong, ul, canvas, input {
+a, button, body, div, dl, dt, em, h1, h2, h3, h4, h5, h6, html, iframe, img, input, label, li, ol, p, span, strong, ul, canvas {
     padding: 0;
     margin: 0;
     border: 0;
@@ -13,9 +13,6 @@ a, button, body, div, dl, dt, em, h1, h2, h3, h4, h5, h6, html, img, label, li, 
     font: inherit;
     vertical-align: baseline;
     outline: none;
-}
-
-a, button, body, div, dl, dt, em, h1, h2, h3, h4, h5, h6, html, img, label, li, ol, p, span, strong, ul, canvas {
     -moz-user-select: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -37,7 +34,7 @@ html, body {
 }
 
 body, #skills p, #milestones p {
-    cursor: url(cursor.123);
+    cursor: url(cursor.cur);
     cursor: url(cursor.png), auto;
 }
 
@@ -45,7 +42,7 @@ button {
     font-family: pressstart, VT100, system, sans-serif;
 }
 
-#itemmenu button, #actionsmenu button {
+#itemmenu button {
     display: block;
     margin: 0;
     width: 100%;
@@ -147,12 +144,8 @@ button {
     display: none;
 }
 
-#hud button, #hud .quickslots, input, #hud #attack-open, #hud #defense-open {
+#hud button, #hud .quickslots, input {
     pointer-events: auto;
-}
-
-#hud #attack-open, #hud #defense-open {
-    cursor: help;
 }
 
 #hud .subcont {
@@ -188,7 +181,7 @@ button {
 }
 
 #optionswindow p:first-child {
-    margin-top: 0;
+    margin-top: 0;   
 }
 
 .options button {
@@ -205,36 +198,25 @@ button {
 
 .stats {
     width: 100%;
-    padding: 0 2px;
 }
 
-.attributes div {
+.attributes {
     text-shadow: 1px 1px 0 #000000;
     background: rgba(4, 4, 4, 0.8);
-    padding: 4px 5px;
-    display: inline-block;
-    float: left;
-    margin: 0 3px 2px 0;
+    padding: 3px 2px 3px 6px;
+    margin: 2px 3px 2px 2px;
+    width: auto;
 }
 
-.spacer {
-    padding-right: 3px;
-}
-
-.clr {
-    clear: both;
+.attributes span {
+    padding-right: 10px;
 }
 
 #healthcont, #hungercont, #staminacont, #thirstcont {
     background: rgba(4, 4, 4, 0.8);
     text-shadow: 1px 1px #000000;
-    padding: 3px;
-    margin-bottom: 2px;
-    width: 50%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    float: left;
+    padding: 2px;
+    margin: 2px 3px 2px 2px;
 }
 
 #health, #hunger, #stamina, #thirst {
@@ -271,7 +253,7 @@ button {
     color: #FF001D;
 }
 
-.skill, .defense {
+.skill, #defense {
     color: #44D0FF;
 }
 
@@ -331,7 +313,7 @@ a:hover {
 }
 
 .equip li {
-    background-color: #4d4d4d;
+    background-color: #4d4d4d;   
 }
 
 .quickslot {
@@ -372,8 +354,7 @@ ul#container {
 }
 
 .crafted {
-    opacity: .80;
-    border-color: #FF001D !important;
+    opacity: .20;
 }
 
 .equip li {
@@ -394,13 +375,9 @@ ul#container {
     color: #782BAE;
 }
 
-#tooltip, #itemmenu, #actionsmenu {
+#tooltip, #itemmenu {
     display: none;
 }
-
-#tooltip li {
-    margin-left: 14px;
-    }
 
 .exceptional {
     border-color: #FFD700 !important;
@@ -478,7 +455,7 @@ ul#container {
     position: absolute;
     background: rgba(4, 4, 4, 0.8);
     width: 100%;
-    height: 100%;
+    height: 100%;  
 }
 
 .clock {
@@ -513,7 +490,7 @@ button, input {
     margin: 0 0 5px;
 }
 
-#main-menu #saveAndExit, #main-menu #daily-challenge-mode, #main-menu #options-extra, #main-menu #endGame {
+#main-menu #saveAndExit, #main-menu #daily-challenge-mode {
     margin-bottom: 20px;
 }
 
@@ -536,7 +513,7 @@ button:hover {
     border: 1px solid #666666;
 }
 
-#tooltip, #itemmenu, #actionsmenu {
+#tooltip, #itemmenu {
     position: absolute;
     z-index: 9999;
     background: rgba(4, 4, 4, 0.925);
@@ -545,7 +522,7 @@ button:hover {
     border: 1px #000 solid;
 }
 
-#itemmenu, #actionsmenu {
+#itemmenu {
     background: none;
     border: none;
     padding: 10px;
@@ -564,6 +541,247 @@ button:hover {
 #craft div.crafted:hover {
     border: 1px #FF001D solid;
 }
+
+.log{background-position:-1056px 0;}
+.branch{background-position:-288px 0;}
+.ironore{background-position:-832px 0;}
+.leaves{background-position:-992px 0;}
+.leafbedroll{background-position:-928px 0;}
+.largerock{background-position:-896px 0;}
+.redmushroom{background-position:-1664px 0;}
+.sharprock{background-position:-1824px 0;}
+.stones{background-position:-1984px 0;}
+.mushrooms{background-position:-1120px 0;}
+.stoneshovel{background-position:-1472px 0;}
+.stoneaxe{background-position:-1344px 0;}
+.soil{background-position:-1920px 0;}
+.fertilesoil{background-position:-512px 0;}
+.pileofsand{background-position:-1280px 0;}
+.pileofgravel{background-position:-1248px 0;}
+.sandstone{background-position:-1216px 0;}
+.peat{background-position:-1184px 0;}
+.earthworm{background-position:-448px 0;}
+.bone{background-position:-256px 0;}
+.twigs{background-position:-2304px -32px;}
+.treebark{background-position:-2208px -32px;}
+.amber{background-position:0 0;}
+.fossil{background-position:-640px 0;}
+.treefungus{background-position:-2240px -32px;}
+.redberries{background-position:-1632px 0;}
+.sapling{background-position:-1728px 0;}
+.kindling{background-position:-864px 0;}
+.smoothrock{background-position:-1888px 0;}
+.treevine{background-position:-2272px -32px;}
+.feather{background-position:-480px 0;}
+.mortarandpestle{background-position:-1088px 0;}
+.arrow{background-position:-64px 0;}
+.woodenarrow{background-position:-1312px 0;}
+.woodenpole{background-position:-2368px -32px;}
+.strippedbark{background-position:-2080px -32px;}
+.arrowhead{background-position:-96px 0;}
+.thistleseeds{background-position:-2176px -32px;}
+.seaweed{background-position:-1760px 0;}
+.cobblestonefloor{background-position:-384px 0;}
+.flowerseeds{background-position:-608px 0;}
+.grassseeds{background-position:-800px 0;}
+.woodenspear{background-position:-1504px 0;}
+.spear{background-position:-1952px 0;}
+.barktunic{background-position:-224px 0;}
+.barkleggings{background-position:-160px 0;}
+.barkshield{background-position:-192px 0;}
+.rawmeat{background-position:-1600px 0;}
+.goldensword{background-position:-768px 0;}
+.goldenring{background-position:-736px 0;}
+.goldcoins{background-position:-672px 0;}
+.goldenchalice{background-position:-704px 0;}
+.string{background-position:-2048px -32px;}
+.rope{background-position:-1696px 0;}
+.raft{background-position:-1568px 0;}
+.fireplough{background-position:-576px 0;}
+.tannin{background-position:-2144px -32px;}
+.animalskull{background-position:-32px 0;}
+.skullcap{background-position:-1856px 0;}
+.limestone{background-position:-1024px 0;}
+.leather{background-position:-960px 0;}
+.tannedleather{background-position:-2112px -32px;}
+.charcoal{background-position:-352px 0;}
+.wovenfabric{background-position:-1408px 0;}
+.cactusneedle{background-position:-1440px 0;}
+.cactusspines{background-position:-320px 0;}
+.waterskin{background-position:-2336px -32px;}
+.cookedmeat{background-position:-416px 0;}
+.stonewall{background-position:-2016px 0;}
+.nopal{background-position:-1152px 0;}
+.sharpglass{background-position:-1792px 0;}
+.ashpile{background-position:-128px 0;}
+.seawaterwaterskin{background-position:-544px 0;}
+.suture{background-position:-1536px 0;}
+.bandage{background-position:-1376px 0;}
+.peatbandage{background-position:-2400px -32px;}
+.bow{background-position:-2432px -32px;}
+.bowdrill{background-position:-2464px -32px;}
+.fishingnet{background-position:-2496px -32px;}
+.rawtrout{background-position:-2528px -32px;}
+.cookedtrout{background-position:-2560px -32px;}
+.campfire{background-position:-2592px -32px;}
+.treevinewhip{background-position:-2624px -32px;}
+.pileofsnow{background-position:-2656px -32px;}
+.barktorch{background-position:-2688px -32px;}
+.barktorch_lit{background-position:-2720px -32px;}
+.handdrill{background-position:-2752px -32px;}
+.smallbag{background-position:-2784px -32px;}
+.shale{background-position:-2816px -32px;}
+.sharpenedbone{background-position:-2848px -32px;}
+.grindstone{background-position:-2880px -32px;}
+.rawfishsteak{background-position:-2912px -32px;}
+.cookedfishsteak{background-position:-2944px -32px;}
+.desalinatedwaterwaterskin{background-position:-2976px -32px;}
+.boatpaddle{background-position:-3008px -32px;}
+.bullboat{background-position:-3040px -32px;}
+.refinedsand{background-position:-3072px -32px;}
+.spyglass{background-position:-3104px -32px;}
+.flask{background-position:-3136px -32px;}
+.rawclay{background-position:-3168px -32px;}
+.rawclayblowpipe{background-position:-3200px -32px;}
+.clayblowpipe{background-position:-3232px -32px;}
+.leatherbelt{background-position:-3264px -32px;}
+.leathertunic{background-position:-3296px -32px;}
+.leatherboots{background-position:-3328px -32px;}
+.leathercap{background-position:-3360px -32px;}
+.leathergorget{background-position:-3392px -32px;}
+.leatherpants{background-position:-3424px -32px;}
+.leathergloves{background-position:-3456px -32px;}
+.furnace{background-position:-3488px -32px;}
+.kiln{background-position:-3520px -32px;}
+.irontongs{background-position:-3552px -32px;}
+.talc{background-position:-3584px -32px;}
+.talcumpowder{background-position:-3616px -32px;}
+.sandcastflask{background-position:-3648px -32px;}
+.lens{background-position:-3680px -32px;}
+.plantroots{background-position:-3712px -32px;}
+.lockpick{background-position:-3744px -32px;}
+.boneneedle{background-position:-3776px -32px;}
+.pineapple{background-position:-3808px -32px;}
+.tatteredmap{background-position:-3840px -32px;}
+.coal{background-position:-3872px -32px;}
+.wroughtiron{background-position:-3904px -32px;}
+.limestonepowder{background-position:-3936px -32px;}
+.ironingot{background-position:-3968px -32px;}
+.backpack{background-position:-4000px -32px;}
+.rottenmeat{background-position:-4032px -32px;}
+.stonehammer{background-position:-4064px -32px;}
+.rawchicken{background-position:-4096px -64px;}
+.cookedchicken{background-position:-4128px -64px;}
+.forgeandanvil{background-position:-4160px -64px;}
+.woodenchest{background-position:-4192px -64px;}
+.ironsword{background-position:-4224px -64px;}
+.ironbreastplate{background-position:-4256px -64px;}
+.ironboots{background-position:-4288px -64px;}
+.ironhelmet{background-position:-4320px -64px;}
+.irongorget{background-position:-4352px -64px;}
+.irongreaves{background-position:-4384px -64px;}
+.irongauntlets{background-position:-4416px -64px;}
+.ironshield{background-position:-4448px -64px;}
+.sandstonewall{background-position:-4480px -64px;}
+.sandstonefloor{background-position:-4512px -64px;}
+.spidersilk{background-position:-4544px -64px;}
+.animalfat{background-position:-4576px -64px;}
+.animalfattorch{background-position:-4608px -64px;}
+.clayflakes{background-position:-4640px -64px;}
+.greensand{background-position:-4672px -64px;}
+.oldinstructionalscroll{background-position:-4704px -64px;}
+.slimegelatin{background-position:-4736px -64px;}
+.glue{background-position:-4768px -64px;}
+.cookedspider{background-position:-4800px -64px;}
+.deadspider{background-position:-4832px -64px;}
+.ironlockpick{background-position:-4864px -64px;}
+.rottingvegetation{background-position:-4896px -64px;}
+.wildonion{background-position:-4928px -64px;}
+.ironhammer{background-position:-4960px -64px;}
+.ironspear{background-position:-4992px -64px;}
+.ironshovel{background-position:-5024px -64px;}
+.irondoubleaxe{background-position:-5056px -64px;}
+.ironpickaxe{background-position:-5088px -64px;}
+.torchstand{background-position:-5120px -64px;}
+.coconut{background-position:-5152px -64px;}
+.palmleaf{background-position:-5184px -64px;}
+.offal{background-position:-5216px -64px;}
+.bones{background-position:-5248px -64px;}
+.poletorch_lit{background-position:-5280px -64px;}
+.cotton{background-position:-5312px -64px;}
+.cottonseeds{background-position:-5344px -64px;}
+.cottonfabric{background-position:-5376px -64px;}
+.bonepole{background-position:-5408px -64px;}
+.tourniquet{background-position:-5440px -64px;}
+.wroughtironpickaxe{background-position:-5472px -64px;}
+.wroughtirondoubleaxe{background-position:-5504px -64px;}
+.wroughtironshovel{background-position:-5536px -64px;}
+.wroughtironspear{background-position:-5568px -64px;}
+.wroughtironhammer{background-position:-5600px -64px;}
+.wroughtironlockpick{background-position:-5632px -64px;}
+.wroughtironshield{background-position:-5664px -64px;}
+.wroughtirongauntlets{background-position:-5696px -64px;}
+.wroughtirongreaves{background-position:-5728px -64px;}
+.wroughtirongorget{background-position:-5760px -64px;}
+.wroughtironhelmet{background-position:-5792px -64px;}
+.wroughtironboots{background-position:-5824px -64px;}
+.wroughtironbreastplate{background-position:-5856px -64px;}
+.wroughtironsword{background-position:-5888px -64px;}
+.woodenwall{background-position:-5920px -64px;}
+.woodenfloor{background-position:-5952px -64px;}
+.woodendoor{background-position:-5984px -64px;}
+.fishingrod{background-position:-6016px -64px;}
+.messageinabottle{background-position:-6048px -64px;}
+.carbonpowder{background-position:-6080px -64px;}
+.pileofcompost{background-position:-6112px -64px;}
+.meltedamber{background-position:-6144px -96px;}
+.tinder{background-position:-6176px -96px;}
+.deadfall{background-position:-6208px -96px;}
+.snare{background-position:-6240px -96px;}
+.medicinalwaterwaterskin{background-position:-6272px -96px;}
+.charcoalbandage{background-position:-6304px -96px;}
+.woodentongs{background-position:-6336px -96px;}
+.wroughtirontongs{background-position:-6368px -96px;}
+.sheetofglass{background-position:-6400px -96px;}
+.solarstill{background-position:-6432px -96px;}
+.stonewaterstill{background-position:-6464px -96px;}
+.sundial{background-position:-6496px -96px;}
+.animalfattorch_lit{background-position:-6528px -96px;}
+.sinew{background-position:-6560px -96px;}
+.shortbow{background-position:-6592px -96px;}
+.longbow{background-position:-6624px -96px;}
+.compositebow{background-position:-6656px -96px;}
+.purifiedfreshwaterwaterskin{background-position:-6688px -96px;}
+.unpurifiedfreshwaterwaterskin{background-position:-6720px -96px;}
+.glassbottle{background-position:-6752px -96px;}
+.cork{background-position:-6784px -96px;}
+.seawaterglassbottle{background-position:-6816px -96px;}
+.desalinatedwaterglassbottle{background-position:-6848px -96px;}
+.medicinalwaterglassbottle{background-position:-6880px -96px;}
+.purifiedfreshwaterglassbottle{background-position:-6912px -96px;}
+.unpurifiedfreshwaterglassbottle{background-position:-6944px -96px;}
+.wroughtironarrow{background-position:-6976px -96px;}
+.ironarrow{background-position:-7008px -96px;}
+.stonebullet{background-position:-7040px -96px;}
+.wroughtironbullet{background-position:-7072px -96px;}
+.ironbullet{background-position:-7104px -96px;}
+.leatherquiver{background-position:-7136px -96px;}
+.ectoplasm{background-position:-7168px -96px;}
+.magicalessense{background-position:-7200px -96px;}
+.woodenfence{background-position:-7232px -96px;}
+.monsteridol{background-position:-7264px -96px;}
+.cordedsling{background-position:-7296px -96px;}
+.leathersling{background-position:-7328px -96px;}
+.wroughtironarrowhead{background-position:-7360px -96px;}
+.ironarrowhead{background-position:-7392px -96px;}
+.hammock{background-position:-7424px -96px;}
+.cottonbedroll{background-position:-7456px -96px;}
+.featherbedroll{background-position:-7488px -96px;}
+.rawtaintedmeat{background-position:-7520px -96px;}
+.cookedtaintedmeat{background-position:-7552px -96px;}
+.stoneknife{background-position:-7584px -96px;}
+.rawblindfish{background-position:-7616px -96px;}
+.cookedblindfish{background-position:-7648px -96px;}
 
 .ui-helper-hidden {
     display: none;
@@ -625,7 +843,7 @@ button:hover {
 }
 
 .ui-front {
-    z-index: 1000 !important;
+    z-index: 1000;
 }
 
 .ui-widget-overlay {
@@ -635,11 +853,11 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999 !important;
+    z-index: 9999;
 }
 
 .ui-modal {
-    z-index: 10000 !important;
+    z-index: 10000;
 }
 
 .ui-resizable {
@@ -878,20 +1096,7 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
     cursor: move;
 }
 
-.ui-dialog-content::-webkit-scrollbar-track {
-    background-color: rgba(0,0,0,0.6);
-}
-
-.ui-dialog-content::-webkit-scrollbar {
-    width: 8px;
-    background: none;
-}
-
-.ui-dialog-content::-webkit-scrollbar-thumb {
-    background-color: #fff;
-}
-
-@media all and (max-height: 800px), all and (max-width: 920px) {
+@media all and (max-height: 800px), all and (max-width: 800px) {
     #messageoverlay {
         max-width: 100%;
     }
@@ -911,12 +1116,5 @@ input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
         left: 0;
         width: 100px;
         min-width: 0;
-    }
-}
-
-@media all and (max-width: 700px) {
-    #healthcont, #hungercont, #staminacont, #thirstcont {
-        float: none;
-        width: 100%;
     }
 }
