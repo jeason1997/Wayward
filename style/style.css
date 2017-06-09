@@ -1,0 +1,922 @@
+@font-face {
+    font-family: "pressstart";
+    src: url(pressstart2p-webfontd41d.eot?#iefix) format("embedded-opentype"), url(pressstart2p-webfont.ttf) format("truetype"), url(pressstart2p-webfont.svg#pressstart) format("svg");
+    font-weight: 400;
+    font-style: normal;
+}
+
+a, button, body, div, dl, dt, em, h1, h2, h3, h4, h5, h6, html, img, label, li, ol, p, span, strong, ul, canvas, input {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    outline: none;
+}
+
+a, button, body, div, dl, dt, em, h1, h2, h3, h4, h5, h6, html, img, label, li, ol, p, span, strong, ul, canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+}
+
+html, body {
+    font-size: 8px;
+    background-color: #000000;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    color: #FFFFFF;
+    font-family: pressstart, VT100, system, sans-serif;
+    line-height: 12px;
+    position: fixed;
+}
+
+body, #skills p, #milestones p {
+    cursor: url(cursor.123);
+    cursor: url(cursor.png), auto;
+}
+
+button {
+    font-family: pressstart, VT100, system, sans-serif;
+}
+
+#itemmenu button, #actionsmenu button {
+    display: block;
+    margin: 0;
+    width: 100%;
+    padding: 4px 8px;
+}
+
+.fontstyle, .fontstyle button {
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 14px;
+    font-family: sans-serif;
+}
+
+.smallwindow {
+    width: 816px;
+    height: 816px;
+    left: 50%;
+    top: 50%;
+    margin-top: -408px;
+    margin-left: -408px;
+}
+
+#oldbrowser {
+    top: 100px;
+    width: 800px;
+    left: 50%;
+    background: #333;
+    padding: 25px;
+    margin-left: -425px;
+    border: 1px #222 solid;
+    position: absolute;
+    text-align: center;
+    z-index: 6;
+}
+
+#oldbrowser h2 {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+#oldbrowser h3 {
+    font-size: 14px;
+    line-height: 150%;
+}
+
+#oldbrowser a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#miniMapCanvas, .item, .equip, #game, #overlay, #light, .ui-dialog .ui-dialog-titlebar-close, .ui-dialog .ui-dialog-content, #map {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+#game, #overlay, #title, #light, #map {
+    font-family: pressstart, VT100, system, sans-serif;
+    line-height: 0;
+    position: absolute;
+}
+
+#map {
+    width: 1024px;
+    height: 512px;
+    z-index: 100;
+    display: none;
+}
+
+#messageoverlay {
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    max-width: 75%;
+}
+
+#messageoverlay p {
+    background: rgba(4, 4, 4, 0.4);
+    text-shadow: 1px 1px 0 #000000;
+    padding: 0 5px;
+}
+
+#hud {
+    position: absolute;
+    z-index: 999;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: none;
+    vertical-align: bottom;
+    pointer-events: none;
+}
+
+.window {
+    display: none;
+}
+
+#hud button, #hud .quickslots, input, #hud #attack-open, #hud #defense-open {
+    pointer-events: auto;
+}
+
+#hud #attack-open, #hud #defense-open {
+    cursor: help;
+}
+
+#hud .subcont {
+    display: table-cell;
+    vertical-align: bottom;
+}
+
+#hud #cont {
+    display: table-row;
+    vertical-align: bottom;
+}
+
+#miniMapCanvas {
+    margin-bottom: -2px;
+}
+
+.quickslots {
+    min-width: 119px;
+}
+
+.map {
+    min-width: 222px;
+}
+
+.options {
+    min-width: 100px;
+    padding-bottom: 1px;
+}
+
+#optionswindow p {
+    margin-top: 10px;
+    margin-top: 10px;
+}
+
+#optionswindow p:first-child {
+    margin-top: 0;
+}
+
+.options button {
+    width: 100px;
+    background: rgba(4, 4, 4, 0.8);
+}
+
+.hotkey {
+    position: absolute;
+    z-index: 1;
+    left: 24px;
+    top: 22px;
+}
+
+.stats {
+    width: 100%;
+    padding: 0 2px;
+}
+
+.attributes div {
+    text-shadow: 1px 1px 0 #000000;
+    background: rgba(4, 4, 4, 0.8);
+    padding: 4px 5px;
+    display: inline-block;
+    float: left;
+    margin: 0 3px 2px 0;
+}
+
+.spacer {
+    padding-right: 3px;
+}
+
+.clr {
+    clear: both;
+}
+
+#healthcont, #hungercont, #staminacont, #thirstcont {
+    background: rgba(4, 4, 4, 0.8);
+    text-shadow: 1px 1px #000000;
+    padding: 3px;
+    margin-bottom: 2px;
+    width: 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+}
+
+#health, #hunger, #stamina, #thirst {
+    width: 100%;
+}
+
+#health p, #hunger p, #stamina p, #thirst p {
+    padding-left: 3px;
+    display: block;
+    white-space: nowrap;
+}
+
+#health {
+    background: #FF001D;
+}
+
+#hunger {
+    background: #B200FF;
+}
+
+#stamina {
+    background: #00ea0b;
+}
+
+#thirst {
+    background: #007FFF;
+}
+
+#skills p:hover, #milestones p:hover {
+    color: #00ea0b;
+}
+
+.bad {
+    color: #FF001D;
+}
+
+.skill, .defense {
+    color: #44D0FF;
+}
+
+.attack, #attack {
+    color: #FFE100;
+}
+
+.good, #talent {
+    color: #93FF28;
+}
+
+.stat, a {
+    color: #FF9900;
+}
+
+.miss {
+    color: #B200FF;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+#inventorywindow p, #options p {
+    padding-top: 15px;
+}
+
+#inventorywindow p:first-child, #options p:first-child {
+    padding-top: 0;
+}
+
+#inventorywindow p {
+    clear: both;
+}
+
+/* Opens the inventory element up. */
+#inventory {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
+#inventory li, #craft div, .equip li, .equip, #container li, .quickslots li, .quickslot {
+    margin: 1px;
+    width: 32px;
+    height: 32px;
+    float: left;
+    cursor: move;
+    border: 1px #222 solid;
+}
+
+.equip, .quickslot {
+    width: 34px;
+    height: 34px;
+    border: none;
+}
+
+.equip li {
+    background-color: #4d4d4d;
+}
+
+.quickslot {
+    margin: 2px;
+    cursor: default;
+}
+
+ul.sortable {
+    list-style-type: none;
+    float: left;
+}
+
+ul#inventory, ul#container {
+    width: 100%;
+    min-height: 32px;
+}
+
+ul#container {
+    min-height: 100%;
+}
+
+.quickslot {
+    position: relative;
+    z-index: 0;
+    background: rgba(4, 4, 4, 0.8);
+}
+
+.quickslots li {
+    margin: 0;
+}
+
+.ui-sortable-helper {
+    display: block !important;
+}
+
+#craft div {
+    cursor: pointer;
+}
+
+.crafted {
+    opacity: .80;
+    border-color: #FF001D !important;
+}
+
+.equip li {
+    margin: 0;
+}
+
+.equip {
+    background: url(../images/equip.png);
+    cursor: default;
+}
+
+#inventory li img, #craft div img, .equip li img, #container li img {
+    width: 100%;
+    height: 100%;
+}
+
+#tooltip strong {
+    color: #782BAE;
+}
+
+#tooltip, #itemmenu, #actionsmenu {
+    display: none;
+}
+
+#tooltip li {
+    margin-left: 14px;
+    }
+
+.exceptional {
+    border-color: #FFD700 !important;
+    box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.legendary {
+    border-color: #782BAE !important;
+    box-shadow: inset 0 0 10px rgba(120, 43, 174, 0.6);
+}
+
+.remarkable {
+    border-color: #2756A8 !important;
+    box-shadow: inset 0 0 10px rgba(39, 86, 168, 0.6);
+}
+
+.damaged {
+    border-color: #FF001D !important;
+    box-shadow: inset 0 0 10px rgba(255, 0, 29, 0.6);
+}
+
+#head {
+    background-position: -96px 0;
+}
+
+#neck {
+    background-position: -192px 0;
+}
+
+#righthand {
+    background-position: -128px 0;
+}
+
+#lefthand {
+    background-position: -224px 0;
+}
+
+#chest {
+    background-position: -32px 0;
+}
+
+#legs {
+    background-position: -160px 0;
+}
+
+#feet {
+    background-position: -64px 0;
+}
+
+#hands {
+    background-position: -256px 0;
+}
+
+#back {
+    background-position: -288px 0;
+}
+
+#game {
+    z-index: 1;
+}
+
+#overlay {
+    z-index: 2;
+}
+
+#title {
+    z-index: 3;
+}
+
+#light {
+    z-index: 4;
+}
+
+#loading {
+    position: absolute;
+    background: rgba(4, 4, 4, 0.8);
+    width: 100%;
+    height: 100%;
+}
+
+.clock {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-left: -42px;
+    margin-top: -42px;
+    background: rgba(4, 4, 4, 0.8);
+    padding: 10px;
+    border: 1px #333 solid;
+}
+
+button, input {
+    font-size: 8px;
+    background: #000000;
+    border: 1px solid #333333;
+    padding: 4px 3px 3px 3px;
+    margin: 1px 2px;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+.filter {
+    float: right;
+    padding: 5px 5px 5px 5px;
+    width: 120px;
+}
+
+#main-menu button {
+    width: 100%;
+    margin: 0 0 5px;
+}
+
+#main-menu #saveAndExit, #main-menu #daily-challenge-mode, #main-menu #options-extra, #main-menu #endGame {
+    margin-bottom: 20px;
+}
+
+#main-menu h3 {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 12px;
+}
+
+.warning {
+    background: #FF001D;
+}
+
+input {
+    cursor: text;
+}
+
+button:hover {
+    background: #333333;
+    border: 1px solid #666666;
+}
+
+#tooltip, #itemmenu, #actionsmenu {
+    position: absolute;
+    z-index: 9999;
+    background: rgba(4, 4, 4, 0.925);
+    padding: 10px;
+    max-width: 300px;
+    border: 1px #000 solid;
+}
+
+#itemmenu, #actionsmenu {
+    background: none;
+    border: none;
+    padding: 10px;
+}
+
+.item {
+    background: url(../images/itemset.png);
+    background-size: 2048px 128px;
+}
+
+#inventory li:hover, #container li:hover, #craft div:hover, #inventory .hover, .hover {
+    border: 1px #FFFFFF solid !important;
+    border-radius: 0;
+}
+
+#craft div.crafted:hover {
+    border: 1px #FF001D solid;
+}
+
+.ui-helper-hidden {
+    display: none;
+}
+
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.ui-helper-reset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    line-height: 1.3;
+    text-decoration: none;
+    font-size: 100%;
+    list-style: none;
+}
+
+.ui-helper-clearfix:before, .ui-helper-clearfix:after {
+    content: "";
+    display: table;
+}
+
+.ui-helper-clearfix:after {
+    clear: both;
+}
+
+.ui-helper-clearfix {
+    min-height: 0;
+}
+
+.ui-helper-zfix {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+}
+
+.ui-state-disabled {
+    cursor: default !important;
+}
+
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+
+.ui-front {
+    z-index: 1000 !important;
+}
+
+.ui-widget-overlay {
+    background: rgba(0, 0, 0, 0.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999 !important;
+}
+
+.ui-modal {
+    z-index: 10000 !important;
+}
+
+.ui-resizable {
+    position: relative;
+}
+
+.ui-resizable-handle {
+    position: absolute;
+    font-size: 0.1px;
+    display: block;
+}
+
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle {
+    display: none;
+}
+
+.ui-resizable-n {
+    cursor: n-resize;
+    height: 7px;
+    width: 100%;
+    top: -5px;
+    left: 0;
+}
+
+.ui-resizable-s {
+    cursor: s-resize;
+    height: 7px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+}
+
+.ui-resizable-e {
+    cursor: e-resize;
+    width: 7px;
+    right: -5px;
+    top: 0;
+    height: 100%;
+}
+
+.ui-resizable-w {
+    cursor: w-resize;
+    width: 7px;
+    left: -5px;
+    top: 0;
+    height: 100%;
+}
+
+.ui-resizable-se {
+    cursor: se-resize;
+    width: 12px;
+    height: 12px;
+    right: 1px;
+    bottom: 1px;
+}
+
+.ui-resizable-sw {
+    cursor: sw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    bottom: -5px;
+}
+
+.ui-resizable-nw {
+    cursor: nw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    top: -5px;
+}
+
+.ui-resizable-ne {
+    cursor: ne-resize;
+    width: 9px;
+    height: 9px;
+    right: -5px;
+    top: -5px;
+}
+
+.ui-button {
+    display: inline-block;
+    position: relative;
+    line-height: normal;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+    overflow: visible;
+    margin-right: 2px;
+}
+
+.ui-button, .ui-button:link, .ui-button:visited, .ui-button:hover, .ui-button:active {
+    text-decoration: none;
+}
+
+.ui-button-icon-only {
+    width: 2.2em;
+}
+
+button.ui-button-icon-only {
+    width: 2.4em;
+}
+
+.ui-button-icons-only {
+    width: 3.4em;
+}
+
+button.ui-button-icons-only {
+    width: 3.7em
+}
+
+.ui-button .ui-button-text {
+    display: block;
+    line-height: normal;
+    padding: 4px 3px 3px 3px;
+    margin-right: 1px;
+}
+
+.ui-button-icon-only .ui-button-text, .ui-button-icons-only .ui-button-text {
+    padding: .4em;
+    text-indent: -9999999px;
+}
+
+.ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text {
+    padding: .4em 1em .4em 2.1em;
+}
+
+.ui-button-text-icon-secondary .ui-button-text, .ui-button-text-icons .ui-button-text {
+    padding: .4em 2.1em .4em 1em;
+}
+
+.ui-button-text-icons .ui-button-text {
+    padding-left: 2.1em;
+    padding-right: 2.1em;
+}
+
+.ui-button-icon-only .ui-icon, .ui-button-text-icon-primary .ui-icon, .ui-button-text-icon-secondary .ui-icon, .ui-button-text-icons .ui-icon, .ui-button-icons-only .ui-icon {
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.ui-button-icon-only .ui-icon {
+    left: 50%;
+    margin-left: -8px;
+}
+
+.ui-button-text-icon-primary .ui-button-icon-primary, .ui-button-text-icons .ui-button-icon-primary, .ui-button-icons-only .ui-button-icon-primary {
+    left: .5em;
+}
+
+.ui-button-text-icon-secondary .ui-button-icon-secondary, .ui-button-text-icons .ui-button-icon-secondary, .ui-button-icons-only .ui-button-icon-secondary {
+    right: .5em;
+}
+
+.ui-buttonset {
+    margin-right: 7px;
+}
+
+.ui-buttonset .ui-button {
+    margin-left: 0;
+    margin-right: -.3em;
+}
+
+input.ui-button::-moz-focus-inner, button.ui-button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+.ui-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: 0;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    padding: 6px 6px 8px 6px;
+    position: relative;
+    background: rgba(4, 4, 4, 0.8);
+}
+
+.ui-dialog .ui-dialog-title {
+    float: left;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    background: url(../images/close.png);
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 20px;
+    padding: 1px;
+    height: 20px;
+}
+
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: 5px;
+    overflow: auto;
+    background: url(../images/dialog-trans.png);
+}
+
+.ui-dialog:hover .ui-dialog-content, .ui-modal.ui-dialog .ui-dialog-content {
+    background: url(../images/dialog.png);
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    text-align: left;
+    background: rgba(4, 4, 4, 0.8);
+    padding: 2px 0 2px 2px;
+}
+
+.ui-dialog:hover .ui-dialog-titlebar, .ui-dialog:hover .ui-dialog-buttonpane, .ui-modal.ui-dialog .ui-dialog-titlebar {
+    background: rgb(4, 4, 4);
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: right;
+}
+
+.ui-dialog .ui-resizable-se {
+    width: 12px;
+    height: 12px;
+    right: -5px;
+    bottom: -5px;
+    background-position: 16px 16px;
+}
+
+.ui-draggable .ui-dialog-titlebar {
+    cursor: move;
+}
+
+.ui-dialog-content::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0.6);
+}
+
+.ui-dialog-content::-webkit-scrollbar {
+    width: 8px;
+    background: none;
+}
+
+.ui-dialog-content::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+
+@media all and (max-height: 800px), all and (max-width: 920px) {
+    #messageoverlay {
+        max-width: 100%;
+    }
+
+    .map {
+        min-width: 114px;
+    }
+
+    #miniMapCanvas {
+        width: 114px;
+        height: 114px;
+    }
+
+    .second-row {
+        position: absolute;
+        bottom: 115px;
+        left: 0;
+        width: 100px;
+        min-width: 0;
+    }
+}
+
+@media all and (max-width: 700px) {
+    #healthcont, #hungercont, #staminacont, #thirstcont {
+        float: none;
+        width: 100%;
+    }
+}
